@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Elementos em JavaScript</title>
+</head>
+
+<body>
+    <h2>Lista de Tarefas</h2>
+    <input type="text" id="novaTarefa" placeholder="Digite uma nova tarefa">
+    <button id="adicionarTarefa">Adicionar Tarefa</button>
+    <button id="limparTarefas">Limpar tarefas</button>
+    <ul id="listaTarefas">
+    </ul>
+
+    <script>
+        const inputTarefa = document.getElementById("novaTarefa");
+        const botaoAdicionar = document.getElementById("adicionarTarefa");
+        const botaoLimpar = document.getElementById("limparTarefas");
+        const listaTarefas = document.getElementById("listaTarefas");
+
+        const tarefas = [];
+
+        botaoAdicionar.addEventListener("click", function () {
+            const novaTarefa = inputTarefa.value;
+            if (novaTarefa.trim() !== "") {
+                tarefas.push(novaTarefa);
+                inputTarefa.value = "";
+                atualizarListaTarefas();
+            }
+        });
+
+        botaoLimpar.addEventListener("click", function () {
+            tarefas.length = 0;
+            atualizarListaTarefas();
+        });
+
+        function atualizarListaTarefas() {
+            listaTarefas.innerHTML = "";
+
+            for (let i = 0; i < tarefas.length; i++) {
+                const itemLista = document.createElement("li");
+                itemLista.textContent = tarefas[i];
+                listaTarefas.appendChild(itemLista);
+            }
+        }
+    </script>
+</body>
+
+</html>

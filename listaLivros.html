@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Elementos em JavaScript</title>
+</head>
+
+<body>
+    <h2>Gerenciador de Livros</h2>
+    <input type="text" id="tituloLivro" placeholder="Título do Livro">
+    <input type="text" id="autorLivro" placeholder="Autor do Livro">
+    <button id="adicionarLivro">Adicionar Livro</button>
+    <ul id="listaLivros">
+    </ul>
+
+    <script>
+        const inputTitulo = document.getElementById("tituloLivro");
+        const inputAutor = document.getElementById("autorLivro");
+        const botaoAdicionar = document.getElementById("adicionarLivro");
+        const listaLivros = document.getElementById("listaLivros");
+
+        const livros = [];
+
+        botaoAdicionar.addEventListener("click", function () {
+            const titulo = inputTitulo.value;
+            const autor = inputAutor.value;
+            if (titulo.trim() !== "" && autor.trim() !== "") {
+                const livro = { titulo: titulo, autor: autor };
+                livros.push(livro);
+                inputTitulo.value = "";
+                inputAutor.value = "";
+                atualizarListaLivros();
+            }
+        });
+
+        function atualizarListaLivros() {
+            listaLivros.innerHTML = "";
+
+            for (let i = 0; i < livros.length; i++) {
+                const itemLista = document.createElement("li");
+                itemLista.textContent = `${livros[i].titulo} - ${livros[i].autor}`;
+                listaLivros.appendChild(itemLista);
+            }
+        }
+    </script>
+</body>
+
+</html>

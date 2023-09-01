@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Elementos em JavaScript</title>
+</head>
+
+<body>
+    <h2>Calculadora de Média</h2>
+    <input type="text" id="numero" placeholder="Digite um número">
+    <button id="adicionarNumero">Adicionar Número</button>
+    <button id="calcularMedia">Calcular Média</button>
+    <ul id="listaNumeros">
+    </ul>
+    <p id="mediaResultado"></p>
+
+    <script>
+        const inputNumero = document.getElementById("numero");
+        const botaoAdicionar = document.getElementById("adicionarNumero");
+        const botaoCalcular = document.getElementById("calcularMedia");
+        const listaNumeros = document.getElementById("listaNumeros");
+        const mediaResultado = document.getElementById("mediaResultado");
+
+        const numeros = [];
+
+        botaoAdicionar.addEventListener("click", function () {
+            const numero = parseFloat(inputNumero.value);
+            if (!isNaN(numero)) {
+                numeros.push(numero);
+                inputNumero.value = "";
+                atualizarListaNumeros();
+            }
+        });
+
+        botaoCalcular.addEventListener("click", function () {
+            const total = numeros.reduce((acc, num) => acc + num, 0);
+            const media = total / numeros.length;
+            mediaResultado.textContent = `A média é: ${media.toFixed(2)}`;
+        });
+
+        function atualizarListaNumeros() {
+            listaNumeros.innerHTML = "";
+
+            for (let i = 0; i < numeros.length; i++) {
+                const itemLista = document.createElement("li");
+                itemLista.textContent = numeros[i];
+                listaNumeros.appendChild(itemLista);
+            }
+        }
+    </script>
+</body>
+
+</html>

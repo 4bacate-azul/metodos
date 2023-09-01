@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Elementos em JavaScript</title>
+</head>
+
+<body>
+    <p id="meuParagrafo">Este é um parágrafo.</p>
+    <button id="meuBotao">Clique para Alterar o Texto</button>
+
+    <script>
+        const paragrafo = document.getElementById("meuParagrafo");
+        const botao = document.getElementById("meuBotao");
+        botao.addEventListener("click", function () {
+            paragrafo.textContent = "Texto alterado pelo botão!";
+        });
+    </script>
+</body>
+
+</html>
